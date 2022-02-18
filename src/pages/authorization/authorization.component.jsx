@@ -1,11 +1,15 @@
 import React from 'react';
+
+import './authorization.styles.scss'
+
 import SignIn from "../../components/sign-in/sign-in.component";
+import SignUp from "../../components/sign-up/sign-up.component";
 
 const Authorization = () => {
     return (
-        <div>
-            <h1>hello</h1>
+        <div className='authorization'>
             <SignIn/>
+            <SignUp/>
         </div>
     );
 };
