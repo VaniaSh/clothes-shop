@@ -1,10 +1,11 @@
-import React from "react";
 
-import './sign-up.styless.scss'
-import {auth, createUserProfileDocument} from "../../firebase/firebase.utils";
+import React from 'react';
 
+import Input from '../input/input.component';
 import Button from "../button/button.component";
-import Input from "../input/input.component";
+
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import './sign-up.styless.scss'
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -14,51 +15,52 @@ class SignUp extends React.Component {
             displayName: '',
             email: '',
             password: '',
-            confirmPassword: '',
-        }
+            confirmPassword: ''
+        };
     }
 
     handleSubmit = async event => {
         event.preventDefault();
 
-        const {displayName, email, password, confirmPassword} = this.state
+        const { displayName, email, password, confirmPassword } = this.state;
 
         if (password !== confirmPassword) {
-            alert("password don`t match")
+            alert("passwords don't match");
             return;
         }
-        try {
-            const {user} = await auth.createUserWithEmailAndPassword(email, password)
 
-            await createUserProfileDocument(user, {displayName})
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(
+                email,
+                password
+            );
+
+            await createUserProfileDocument(user, { displayName });
 
             this.setState({
                 displayName: '',
                 email: '',
                 password: '',
-                confirmPassword: '',
-            })
+                confirmPassword: ''
+            });
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
-
-
-    }
+    };
 
     handleChange = event => {
-        const {value, name} = event.target
+        const { name, value } = event.target;
 
-        this.setState({[name]: value})
-    }
+        this.setState({ [name]: value });
+    };
 
     render() {
-        const {displayName, email, password, confirmPassword} = this.state
-
+        const { displayName, email, password, confirmPassword } = this.state;
         return (
             <div className='sign-up'>
-                <h2 className='title'>I do not have an account</h2>
-                <span className='subtitle'>Sign up with your email and password</span>
-                <form onSubmit={this.handleSubmit}>
+                <h2 className='title'>I do not have a account</h2>
+                <span>Sign up with your email and password</span>
+                <form className='sign-up-form' onSubmit={this.handleSubmit}>
                     <Input
                         type='text'
                         name='displayName'
@@ -91,15 +93,11 @@ class SignUp extends React.Component {
                         label='Confirm Password'
                         required
                     />
-
-                    <Button type='submit'>Sign Up</Button>
+                    <Button type='submit'>SIGN UP</Button>
                 </form>
-
-
             </div>
-        )
+        );
     }
-
 }
 
-export default SignUp
+export default SignUp;
