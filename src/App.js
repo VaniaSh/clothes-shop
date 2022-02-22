@@ -1,15 +1,15 @@
 import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {setCurrentUser} from './redux/user/user.action';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 import './App.css';
 
-import HomePage from './pages/homepage/homepage.component';
+import Header from './components/header/header.component';
 import ShopPage from './pages/shop/shop.componenet';
 import Authorization from "./pages/authorization/authorization.component";
-import Header from './components/header/header.component';
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
-import {setCurrentUser} from './redux/user/user.action';
+import HomePage from './pages/homepage/homepage.component';
 
 
 class App extends React.Component {
